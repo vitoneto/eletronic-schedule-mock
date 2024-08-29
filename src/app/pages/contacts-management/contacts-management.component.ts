@@ -43,7 +43,7 @@ export class ContactsManagementComponent implements OnInit{
 
   updateContact(contact: any): void {
     this.scheduleService.updateContact(contact)
-    .then((response) => console.log(response))
+    .then((response) => this.getContactList())
     .catch((error: any) => console.log(error))
   }
 
