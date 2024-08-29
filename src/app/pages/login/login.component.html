@@ -7,7 +7,7 @@
     <label>Senha</label>
     <input type="password"  [formControl]="password" autocomplete="current-password">
   </form>
-  <button *ngIf="!createUserStatus" type="button" (click)="login()">Entrar</button>
+  <button *ngIf="!createUserStatus && emailIsValid && passwordIsValid" type="button" (click)="login()">Entrar</button>
   <button *ngIf="!createUserStatus" type="button" (click)="toggleCreateUser()">criar um usuário</button>
 </div>
 
@@ -23,11 +23,11 @@
     <input type="password"  [formControl]="confirmPassword" autocomplete="current-password">
 
     <select [formControl]="admin">
-      <option value="true">Sim</option>
-      <option value="false">Não</option>
+      <option value=1>Sim</option>
+      <option value=0>Não</option>
     </select>
   </form>
-  <button *ngIf="createUserStatus" type="button" (click)="createUser()">Registrar usuário</button>
+  <button *ngIf="createUserStatus && emailIsValid && passwordIsValid && confirmPasswordIsValid" type="button" (click)="createUser()">Registrar usuário</button>
   <button *ngIf="createUserStatus" type="button" (click)="toggleCreateUser()">Logar com user existente</button>
 
   <span *ngIf="passwordIsntTheSame">A senha não é a mesma</span>

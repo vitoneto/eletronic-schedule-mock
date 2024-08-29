@@ -1,5 +1,5 @@
 export interface User {
   email: string,
   passWord: string,
-  admin: boolean
+  admin: number
 }

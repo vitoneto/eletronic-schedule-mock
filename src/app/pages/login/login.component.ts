@@ -16,20 +16,41 @@ export class LoginComponent implements OnInit{
   createUserErrorMessage: boolean = false;
   userNotFound: boolean = false;
   wrongPassword: boolean = false;
+  emailIsValid: boolean = false;
+  passwordIsValid: boolean = false;
+  confirmPasswordIsValid: boolean = false;
 
 
   email = new FormControl<string>('');
   password = new FormControl<string>('');
   confirmPassword = new FormControl<string>('');
-  admin = new FormControl<boolean>(false);
+  admin = new FormControl<number>(0);
 
   constructor(private scheduleService: ScheduleService) {}
 
   ngOnInit(): void {
-    this.getUserList()
+    this.getUserList();
+    this.validateLoginForm();
     if(this.scheduleService.user) {
       // logar
     }
+  }
+
+  validateLoginForm(): void {
+    this.email.valueChanges.subscribe(() => {
+      const isEmailValid = this.email.value && this.email.value.length > 2;
+      isEmailValid ? this.emailIsValid = true : this.emailIsValid = false;
+    })
+
+    this.password.valueChanges.subscribe(() => {
+      const ispasswordValid = this.password.value && this.password.value.length > 0;
+      ispasswordValid ? this.passwordIsValid = true : this.passwordIsValid = false;
+    })
+
+    this.confirmPassword.valueChanges.subscribe(() => {
+      const isConfirmPasswordValid = this.confirmPassword.value && this.confirmPassword.value.length > 0;
+      isConfirmPasswordValid ? this.confirmPasswordIsValid = true : this.confirmPasswordIsValid = false;
+    })
   }
 
   toggleCreateUser(): void {
