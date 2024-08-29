@@ -17,8 +17,12 @@ export class AppComponent implements OnInit {
   }
 
   checkUserLoggedIn(): void {
-    const user: User = JSON.parse(JSON.stringify(localStorage.getItem('scheduleUser')));
-    if(user) {
+    let user = JSON.parse(JSON.stringify(localStorage.getItem('scheduleUser')));
+
+    const storedScheduleUser = localStorage.getItem('scheduleUser');
+
+    if (storedScheduleUser) {
+      user = JSON.parse(atob(storedScheduleUser));
       this.scheduleService.user = {...user}
     }
   }

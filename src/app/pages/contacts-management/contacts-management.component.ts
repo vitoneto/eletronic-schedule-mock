@@ -15,7 +15,7 @@ export class ContactsManagementComponent implements OnInit{
   contactList: Contact[] = [];
 
   constructor(
-    private scheduleService: ScheduleService,
+    public scheduleService: ScheduleService,
     private router: Router,
     public dialog: MatDialog
   ) {}
