@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { User } from 'src/app/interfaces/schedule-interfaces';
 import { ScheduleService } from 'src/app/services/schedule.service';
@@ -26,14 +27,21 @@ export class LoginComponent implements OnInit{
   confirmPassword = new FormControl<string>('');
   admin = new FormControl<number>(0);
 
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(
+    private scheduleService: ScheduleService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUserList();
     this.validateLoginForm();
     if(this.scheduleService.user) {
-      // logar
+      this.redirectToManagement();
     }
+  }
+
+  redirectToManagement(): void {
+    this.router.navigate(['/contacts-management']);
   }
 
   validateLoginForm(): void {
@@ -114,6 +122,7 @@ export class LoginComponent implements OnInit{
   saveUser(user: any) {
     const user64 = btoa(JSON.stringify(user));
     localStorage.setItem('scheduleUser', user64)
+    this.redirectToManagement();
   };
 
   isPasswordRight(passWord: string): boolean  {
@@ -144,6 +153,7 @@ export class LoginComponent implements OnInit{
         return
       }
 
+      this.scheduleService.user = user
       this.saveUser(user);
       return
     }

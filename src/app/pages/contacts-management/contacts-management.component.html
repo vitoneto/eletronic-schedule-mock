@@ -1,0 +1,19 @@
+<h1>Management</h1>
+<app-create-contact *ngIf="createContact" (checkContactListEvent)="toggleCreateContact()" (createNewContactEvent)="getContactList()"></app-create-contact>
+
+<div *ngIf="!createContact"  class="contact-list">
+  <h2>Lista de Contatos</h2>
+  <ul>
+    <li *ngFor="let contact of contactList">
+      <h4>Nome: {{ contact.name }}</h4>
+      <h4>Endereço: {{ contact.address }}</h4>
+      <h4>Telefone: {{ contact.phone }}</h4>
+      <h4>Email: {{ contact.email }}</h4>
+      <button (click)="deleteContact(contact)">Deletar {{ contact.name }}</button>
+      <button (click)="updateContact(contact)">Editar {{ contact.name }}</button>
+    </li>
+  </ul>
+
+  <button type="button" (click)="toggleCreateContact()">Cadastrar um contato</button>
+</div>
+<button type="button" (click)="logout()">Logout</button>

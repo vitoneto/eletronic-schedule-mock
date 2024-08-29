@@ -1,0 +1,18 @@
+<h2>Create Contact</h2>
+
+<form>
+  <label>Nome:</label>
+  <input type="text" [formControl]="name">
+  <label>Endereço:</label>
+  <input type="text" [formControl]="address">
+  <label>Telefone:</label>
+  <input type="text" [formControl]="phone">
+  <label>Email:</label>
+  <input type="email" [formControl]="email">
+</form>
+
+<button *ngIf="createButton" type="button" (click)="createContact()">Criar</button>
+<button type="button" (click)="checkContactList()">Ver lista de contatos</button>
+
+<span *ngIf="createContactSucess">Contato criado com sucesso!</span>
+<span *ngIf="createContactError">Erro ao criar contato!</span>
