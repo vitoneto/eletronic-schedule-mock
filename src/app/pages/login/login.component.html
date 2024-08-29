@@ -1,0 +1,32 @@
+<div *ngIf="!createUser" class="login">
+  <h1>Login</h1>
+  <label>Email</label>
+  <input type="text"  [formControl]="user">
+
+  <label>Senha</label>
+  <input type="text"  [formControl]="password">
+</div>
+
+<div *ngIf="createUser" class="create-user">
+  <h1>Criar usuário</h1>
+
+  <label>Escolha seu melhor email </label>
+  <input type="text"  [formControl]="user">
+  <label>Digite uma senha</label>
+  <input type="text"  [formControl]="password">
+  <label>Confirme a senha digitada</label>
+  <input type="text"  [formControl]="password">
+
+  <select [formControl]="admin">
+    <option value="true">Sim</option>
+    <option value="false">Não</option>
+  </select>
+
+  <span *ngIf="passwordIsntTheSame">A senha não é a mesma</span>
+  <span *ngIf="emailAlreadyExist">Já temos esse email cadastrado</span>
+</div>
+
+<div class="create-user-button">
+  <button *ngIf="!createUser" type="button" (click)="toggleCreateUser()">criar usuário</button>
+  <button *ngIf="createUser" type="button" (click)="toggleCreateUser()">Logar com user existente</button>
+</div>
