@@ -1,32 +1,40 @@
-<div *ngIf="!createUser" class="login">
+<div *ngIf="!createUserStatus" class="login">
   <h1>Login</h1>
-  <label>Email</label>
-  <input type="text"  [formControl]="user">
+  <form>
+    <label>Email</label>
+    <input type="email"  [formControl]="email" autocomplete="username">
 
-  <label>Senha</label>
-  <input type="text"  [formControl]="password">
+    <label>Senha</label>
+    <input type="password"  [formControl]="password" autocomplete="current-password">
+  </form>
+  <button *ngIf="!createUserStatus" type="button" (click)="login()">Entrar</button>
+  <button *ngIf="!createUserStatus" type="button" (click)="toggleCreateUser()">criar um usuário</button>
 </div>
 
-<div *ngIf="createUser" class="create-user">
+<div *ngIf="createUserStatus" class="create-user">
   <h1>Criar usuário</h1>
 
-  <label>Escolha seu melhor email </label>
-  <input type="text"  [formControl]="user">
-  <label>Digite uma senha</label>
-  <input type="text"  [formControl]="password">
-  <label>Confirme a senha digitada</label>
-  <input type="text"  [formControl]="password">
+  <form>
+    <label>Escolha seu melhor email </label>
+    <input type="email"  [formControl]="email" autocomplete="username">
+    <label>Digite uma senha</label>
+    <input type="password"  [formControl]="password" autocomplete="current-password">
+    <label>Confirme a senha digitada</label>
+    <input type="password"  [formControl]="confirmPassword" autocomplete="current-password">
 
-  <select [formControl]="admin">
-    <option value="true">Sim</option>
-    <option value="false">Não</option>
-  </select>
+    <select [formControl]="admin">
+      <option value="true">Sim</option>
+      <option value="false">Não</option>
+    </select>
+  </form>
+  <button *ngIf="createUserStatus" type="button" (click)="createUser()">Registrar usuário</button>
+  <button *ngIf="createUserStatus" type="button" (click)="toggleCreateUser()">Logar com user existente</button>
 
   <span *ngIf="passwordIsntTheSame">A senha não é a mesma</span>
   <span *ngIf="emailAlreadyExist">Já temos esse email cadastrado</span>
 </div>
 
-<div class="create-user-button">
-  <button *ngIf="!createUser" type="button" (click)="toggleCreateUser()">criar usuário</button>
-  <button *ngIf="createUser" type="button" (click)="toggleCreateUser()">Logar com user existente</button>
-</div>
+<span *ngIf="wrongPassword">Senha incorreta!</span>
+<span *ngIf="userNotFound">Usuário não encontrado!</span>
+<span *ngIf="createUserSuccessMessage">Usuário registrado com sucesso!</span>
+<span *ngIf="createUserErrorMessage">Erro ao Criar usuário!</span>
