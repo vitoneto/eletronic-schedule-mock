@@ -10,7 +10,7 @@
       <h4>Telefone: {{ contact.phone }}</h4>
       <h4>Email: {{ contact.email }}</h4>
       <button (click)="deleteContact(contact)">Deletar {{ contact.name }}</button>
-      <button (click)="updateContact(contact)">Editar {{ contact.name }}</button>
+      <button (click)="openEditContactDialog(contact)">Editar {{ contact.name }}</button>
     </li>
   </ul>
 

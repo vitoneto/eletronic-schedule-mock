@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Contact } from 'src/app/interfaces/schedule-interfaces';
 import { ScheduleService } from 'src/app/services/schedule.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditContactDialogeComponent } from './edit-contact-dialoge/edit-contact-dialoge.component';
 
 @Component({
   selector: 'app-contacts-management',
@@ -14,7 +16,8 @@ export class ContactsManagementComponent implements OnInit{
 
   constructor(
     private scheduleService: ScheduleService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -54,5 +57,13 @@ export class ContactsManagementComponent implements OnInit{
     localStorage.removeItem('scheduleUser');
     this.scheduleService.user = null;
     this.redirectToLogin();
+  }
+
+  openEditContactDialog(contact: any) {
+    const dialogRef = this.dialog.open(EditContactDialogeComponent, {data: contact});
+
+    dialogRef.afterClosed().subscribe((result) => {
+      !!result && this.updateContact(result);
+    })
   }
 }
