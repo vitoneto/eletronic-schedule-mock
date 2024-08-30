@@ -60,7 +60,7 @@ export class ContactsManagementComponent implements OnInit{
   }
 
   openEditContactDialog(contact: any) {
-    const dialogRef = this.dialog.open(EditContactDialogeComponent, {data: contact});
+    const dialogRef = this.dialog.open(EditContactDialogeComponent, {data: contact, height: '400px', width: '600px',});
 
     dialogRef.afterClosed().subscribe((result) => {
       !!result && this.updateContact(result);

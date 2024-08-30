@@ -1,0 +1,32 @@
+h1 {
+  width: max-content;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.contact-list {
+  width: max-content;
+  margin: auto;
+
+  ul {
+    list-style-type: none;
+    height: 400px;
+    width: 400px;
+    overflow-y: auto;
+    border: 2px solid;
+    padding: 10px 0;
+    li {
+      width: max-content;
+      margin: 10px auto;
+      border: 1px solid;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  }
+}
+
+button {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+}
