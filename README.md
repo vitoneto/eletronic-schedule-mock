@@ -4,7 +4,7 @@ Node: 16.14.2
 
 AO baixar o projeto abrir o terminal no diretório e rodar o comando ng serve.
 
-# Funciona a aplicação
+# Como funciona a aplicação
 Ao fazer o ligin as informaçoes do usuário ficarão salvas em local storage codificadas em base64.
 Se tentar acessar a tela de login com um user salvo em local storage o sistema redireciona para a parte interna do sistema.
 Ao tentar acessar a home do sistema e não tiver user em local storage o sistema redireciona para a tela de login.
